@@ -14,8 +14,8 @@
         <td>Nombre</td>
         <td>DNI</td>
         <td>Sexo</td>
-        <td>Categoría</td>
         <td>Años trabajados</td>
+        <td>Categoría</td>
     </tr>
     <c:forEach var="empleado" items="${lista}">
         <tr>

@@ -3,6 +3,7 @@ package com.empresa.model;
 import com.empresa.exceptions.DatosNoCorrectosException;
 
 public class Empleado {
+    public int id;
     public String nombre;
     public String dni;
     public char sexo;

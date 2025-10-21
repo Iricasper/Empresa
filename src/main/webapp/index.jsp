@@ -10,7 +10,7 @@
         <h2><%= "Menú Empleados y Nóminas" %></h2>
         <table border="1">
             <tr>
-                <td><a href="#">Mostrar datos de todos los empleados</a></td>
+                <td><a href="empleados?opcion=listar">Mostrar datos de todos los empleados</a></td>
             </tr>
             <tr>
                 <td><a href="#">Mostrar salario de un empleado</a></td>

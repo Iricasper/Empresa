@@ -3,7 +3,6 @@ package com.empresa.dao;
 import com.empresa.conexion.Conexion;
 import com.empresa.model.Empleado;
 
-import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -17,7 +16,7 @@ public class EmpleadoDAO {
     private boolean estadoOperacion;
 
     // Obtener la lista de empleados
-    public List<Empleado> obtenerEmpleados() throws SQLException, IOException {
+    public List<Empleado> obtenerEmpleados() throws SQLException {
         ResultSet resultSet = null;
         List<Empleado> listaEmpleados = new ArrayList<>();
 
@@ -31,6 +30,7 @@ public class EmpleadoDAO {
             resultSet = statement.executeQuery(sql);
             while (resultSet.next()) {
                 Empleado e = new Empleado();
+                e.id = resultSet.getInt("id");
                 e.nombre = resultSet.getString("nombre");
                 e.dni = resultSet.getString("dni");
                 e.sexo = resultSet.getString("sexo").charAt(0);
