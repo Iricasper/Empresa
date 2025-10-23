@@ -13,7 +13,7 @@
                 <td><a href="empleados?opcion=listar">Mostrar datos de todos los empleados</a></td>
             </tr>
             <tr>
-                <td><a href="#">Mostrar salario de un empleado</a></td>
+                <td><a href="empleados?opcion=buscar">Mostrar salario de un empleado</a></td>
             </tr>
             <tr>
                 <td><a href="#">Modificar datos de un empleado</a></td>

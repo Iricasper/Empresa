@@ -39,8 +39,28 @@ public class Empleado {
         }
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public String getDni() {
+        return dni;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public char getSexo() {
+        return sexo;
+    }
+
     public int getCategoria() {
         return categoria;
+    }
+
+    public int getAnyos() {
+        return anyos;
     }
 
     public void incrAnyo() {
