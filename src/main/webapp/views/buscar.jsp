@@ -4,7 +4,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-    <title>Buscar Sueldo EMpleado</title>
+    <title>Buscar Sueldo Empleado</title>
 </head>
 <body>
 <h1>Buscar Sueldo Empleado</h1>
@@ -13,14 +13,14 @@
     <table border="1">
         <tr>
             <td>DNI:</td>
-            <td><input type="text" name="dni" size="20"></td>
+            <td><input type="text" name="dni" required maxlength="9"></td>
         </tr>
     </table>
     <input type="submit" value="Guardar">
 <c:if test="${dni != null}">
     <p>
         El empleado <c:out value="${NOMBRE}"></c:out> con DNI <c:out value="${DNI}"></c:out> tiene un
-        salario de <c:out value="${SALARIO}"></c:out> ?.
+        salario de <c:out value="${SALARIO}"></c:out> euros.
     </p>
 </c:if>
 </form>

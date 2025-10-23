@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -70,8 +71,11 @@ public class EmpleadoController extends HttpServlet {
             EmpleadoDAO empDAO = new EmpleadoDAO();
             try {
                 dni = request.getParameter("dni");
-                empDAO.obtenerSueldoEmpleado(dni);
+                request.setAttribute("dni", dni);
+                Map sueldoEmpleado = empDAO.obtenerSueldoEmpleado(dni);
                 RequestDispatcher rd = request.getRequestDispatcher("/views/buscar.jsp");
+
+                rd.forward(request, response);
             } catch  (Exception e) {
                 e.printStackTrace();
             }
