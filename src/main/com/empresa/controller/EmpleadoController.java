@@ -52,7 +52,6 @@ public class EmpleadoController extends HttpServlet {
             System.out.println("Listando empleados");
         } else if (opcion.equals("buscar")) {
 
-            EmpleadoDAO empDAO = new EmpleadoDAO();
             try {
                 RequestDispatcher rd = request.getRequestDispatcher("/views/buscar.jsp");
                 rd.forward(request, response);
@@ -71,15 +70,21 @@ public class EmpleadoController extends HttpServlet {
             EmpleadoDAO empDAO = new EmpleadoDAO();
             try {
                 dni = request.getParameter("dni");
-                request.setAttribute("dni", dni);
                 Map sueldoEmpleado = empDAO.obtenerSueldoEmpleado(dni);
+                if (!sueldoEmpleado.containsKey("error")) {
+                    request.setAttribute("nombre", sueldoEmpleado.get("nombre"));
+                    request.setAttribute("dni", sueldoEmpleado.get("dni"));
+                    request.setAttribute("sueldo", sueldoEmpleado.get("sueldo"));
+                } else {
+                    request.setAttribute("error", sueldoEmpleado.get("error"));
+                }
                 RequestDispatcher rd = request.getRequestDispatcher("/views/buscar.jsp");
-
                 rd.forward(request, response);
-            } catch  (Exception e) {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
             System.out.println("Mostrando empleado");
+
         }
     }
 }

@@ -51,7 +51,6 @@ public class EmpleadoDAO {
     public Map<String, Object> obtenerSueldoEmpleado(String dniBuscado) throws SQLException {
         ResultSet resultSet;
         Map<String, Object> sueldoMap = new HashMap<>();
-//        Empleado empleado = new Empleado();
         String dni;
         String nombre;
         int sueldo;
@@ -60,26 +59,34 @@ public class EmpleadoDAO {
         estadoOperacion = false;
         connection = obtenerConexion();
 
-        try {
-            sql = "SELECT empleados.dni, empleados.nombre, nominas.sueldo FROM empleados join nominas ON empleados.dni = nominas.dni WHERE empleados.dni LIKE UPPER(?)";
-            statement = connection.prepareStatement(sql);
-            statement.setString(1, dniBuscado);
+        if (dniBuscado.equals("")) {
+            System.err.println("No se ha introducido ningun valor");
+            sueldoMap.put("error", "No se ha introducido ningun valor");
+        } else if (dniBuscado.length() != 9) {
+            System.err.println("El DNI debe tener 9 caracteres");
+            sueldoMap.put("error", "El DNI debe tener 9 caracteres");
+        } else {
+            try {
+                sql = "SELECT empleados.dni, empleados.nombre, nominas.sueldo FROM empleados join nominas ON empleados.dni = nominas.dni WHERE empleados.dni LIKE UPPER(?)";
+                statement = connection.prepareStatement(sql);
+                statement.setString(1, dniBuscado);
 
-            resultSet = statement.executeQuery();
+                resultSet = statement.executeQuery();
 
-            if (resultSet.next()) {
-                dni =  resultSet.getString("dni");
-                nombre = resultSet.getString("nombre");
-                sueldo = resultSet.getInt("sueldo");
-                sueldoMap.put("dni", dni);
-                sueldoMap.put("nombre", nombre);
-                sueldoMap.put("sueldo", sueldo);
+                if (resultSet.next()) {
+                    dni = resultSet.getString("dni");
+                    nombre = resultSet.getString("nombre");
+                    sueldo = resultSet.getInt("sueldo");
+                    sueldoMap.put("dni", dni);
+                    sueldoMap.put("nombre", nombre);
+                    sueldoMap.put("sueldo", sueldo);
+                }
+
+            } catch (SQLException ex) {
+                ex.printStackTrace();
             }
 
-        } catch (SQLException ex) {
-            ex.printStackTrace();
         }
-
         return sueldoMap;
     }
 

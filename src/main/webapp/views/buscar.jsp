@@ -16,13 +16,18 @@
             <td><input type="text" name="dni" required maxlength="9"></td>
         </tr>
     </table>
-    <input type="submit" value="Guardar">
-<c:if test="${dni != null}">
-    <p>
-        El empleado <c:out value="${NOMBRE}"></c:out> con DNI <c:out value="${DNI}"></c:out> tiene un
-        salario de <c:out value="${SALARIO}"></c:out> euros.
-    </p>
-</c:if>
+    <input type="submit" value="Buscar">
+
+    <c:if test="${request.getAttribute('error') == null}">
+        <p>
+            El empleado <c:out value="${nombre}"></c:out> con DNI <c:out value="dni"></c:out> tiene un
+            salario de <c:out value="${sueldo}"></c:out> euros.
+        </p>
+    </c:if>
+
+    <c:if test="${request.getAttribute('error') != null}">
+        <p>ERROR: <c:out value="${error}"></c:out></p>
+    </c:if>
 </form>
 </body>
 </html>
