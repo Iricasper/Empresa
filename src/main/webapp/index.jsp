@@ -7,16 +7,16 @@
         <title>Menú de Opciones</title>
     </head>
     <body>
-        <h2><%= "Menú Empleados y Nóminas" %></h2>
+        <h2>Menú Empleados y Nóminas</h2>
         <table border="1">
             <tr>
                 <td><a href="empleados?opcion=listar">Mostrar datos de todos los empleados</a></td>
             </tr>
             <tr>
-                <td><a href="empleados?opcion=buscar">Mostrar salario de un empleado</a></td>
+                <td><a href="empleados?opcion=buscarPorDni">Mostrar salario de un empleado</a></td>
             </tr>
             <tr>
-                <td><a href="#">Modificar datos de un empleado</a></td>
+                <td><a href="empleados?opcion=buscarPorCampo">Modificar datos de un empleado</a></td>
             </tr>
 
         </table>

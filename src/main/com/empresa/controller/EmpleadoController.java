@@ -50,10 +50,10 @@ public class EmpleadoController extends HttpServlet {
                 e.printStackTrace();
             }
             System.out.println("Listando empleados");
-        } else if (opcion.equals("buscar")) {
+        } else if (opcion.equals("buscarPorDni")) {
 
             try {
-                RequestDispatcher rd = request.getRequestDispatcher("/views/buscar.jsp");
+                RequestDispatcher rd = request.getRequestDispatcher("/views/buscarPorDni.jsp");
                 rd.forward(request, response);
             } catch (Exception e) {
                 e.printStackTrace();
@@ -64,7 +64,7 @@ public class EmpleadoController extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String opcion = request.getParameter("opcion");
-        if (opcion.equals("buscar")) {
+        if (opcion.equals("buscarPorDni")) {
 
             String dni;
             EmpleadoDAO empDAO = new EmpleadoDAO();
@@ -78,12 +78,14 @@ public class EmpleadoController extends HttpServlet {
                 } else {
                     request.setAttribute("error", sueldoEmpleado.get("error"));
                 }
-                RequestDispatcher rd = request.getRequestDispatcher("/views/buscar.jsp");
+                RequestDispatcher rd = request.getRequestDispatcher("/views/buscarPorDni.jsp");
                 rd.forward(request, response);
             } catch (Exception e) {
                 e.printStackTrace();
             }
             System.out.println("Mostrando empleado");
+
+        } else if (opcion.equals("buscarPorCampo")) {
 
         }
     }
