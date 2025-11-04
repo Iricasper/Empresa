@@ -20,36 +20,37 @@
     </select><br/><br/>
 
     <label for="valor">Valor: </label>
+    <input type="text" name="valor" id="valor" required>
     <input type="submit" value="BuscarPorCampo">
 </form>
 
-<c:if test="${not empty resultados}">
+<%--<c:if test="${not empty empleadosMap}">--%>
     <h2>Resultados de la búsqueda:</h2>
     <table border="1">
         <tr>
-            <th>Nombre</th>
             <th>DNI</th>
+            <th>Nombre</th>
             <th>Sexo</th>
             <th>Categoría</th>
             <th>Años</th>
             <th>Sueldo</th>
             <th>Acciones</th>
         </tr>
-        <c:forEach var="emp" items="${resultados}">
+        <c:forEach var="emp" items="${empleadosMap}">
             <tr>
                 <td><c:out value="${emp.nombre}"/></td>
                 <td><c:out value="${emp.dni}"/></td>
                 <td><c:out value="${emp.sexo}"/></td>
                 <td><c:out value="${emp.categoria}"/></td>
+                <td><c:out value="2 euros"/></td>
                 <td><c:out value="${emp.anyos}"/></td>
-                <td><c:out value="${sueldo}"/></td>
                 <td>
-                    <a href="empleados?opcion=editar&dni=<c:out value="${emp.id}" />">Editar</a>
+                    <a href="empleados?opcion=editar&id=<c:out value="${emp.id}" />">Editar</a>
                 </td>
             </tr>
         </c:forEach>
     </table>
-</c:if>
+<%--</c:if>--%>
 
 </body>
 </html>

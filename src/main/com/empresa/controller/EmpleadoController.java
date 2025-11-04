@@ -11,8 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -59,6 +57,14 @@ public class EmpleadoController extends HttpServlet {
                 e.printStackTrace();
             }
             System.out.println("Mostrando búsqueda de empleados");
+        } else if (opcion.equals("buscarPorCampo")) {
+
+            try {
+                RequestDispatcher rd = request.getRequestDispatcher("/views/buscarPorCampo.jsp");
+                rd.forward(request, response);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -87,6 +93,20 @@ public class EmpleadoController extends HttpServlet {
 
         } else if (opcion.equals("buscarPorCampo")) {
 
+            String campo;
+            String valor;
+            EmpleadoDAO empDAO = new EmpleadoDAO();
+            try {
+                campo = request.getParameter("buscarPorCampo");
+                valor = request.getParameter("valor");
+                Map<Integer, Empleado> empleadosMap = empDAO.obtenerEmpleados(campo, valor);
+                RequestDispatcher rd = request.getRequestDispatcher("/views/buscarPorCampo.jsp");
+                request.setAttribute("empleadosMap", empleadosMap);
+                rd.forward(request, response);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            System.out.println("Mostrando empleados");
         }
     }
 }

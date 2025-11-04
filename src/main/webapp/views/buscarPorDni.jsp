@@ -28,11 +28,11 @@
 </c:if>
 
 <c:if test="${error != null}">
-    <p>ERROR: <c:out value="${error}"></c:out></p>
+    <p style="color: red">ERROR: <c:out value="${error}"></c:out></p>
 </c:if>
 
 <c:if test="${dni == null && error == null}">
-    <p>ERROR: No se ha encontrado ningún empleado con el dni introducido.</p>
+    <p style="color: red">ERROR: No se ha encontrado ningún empleado con el dni introducido.</p>
 </c:if>
 
 </body>

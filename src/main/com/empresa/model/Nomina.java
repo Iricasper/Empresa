@@ -10,6 +10,6 @@ public class Nomina {
      * @return Devuelve el sueldo final
      */
     public static int sueldo(Empleado emp) {
-        return SUELDO_BASE[emp.getCategoria()-1]+5000*emp.anyos;
+        return SUELDO_BASE[emp.getCategoria() - 1] + 5000 * emp.anyos;
     }
 }

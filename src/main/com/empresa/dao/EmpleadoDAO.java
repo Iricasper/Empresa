@@ -90,9 +90,39 @@ public class EmpleadoDAO {
         return sueldoMap;
     }
 
+    public Map<Integer, Empleado> obtenerEmpleados(String campo, String valor) throws SQLException {
+        ResultSet resultSet;
+        String sql;
+        Map<Integer, Empleado> empleadosMap = new HashMap<>();
+        estadoOperacion = false;
+        connection = obtenerConexion();
+
+        try {
+            sql = "SELECT * FROM empleados WHERE ? LIKE ?";
+            statement = connection.prepareStatement(sql);
+            statement.setString(1, campo);
+            statement.setString(2, valor);
+
+            resultSet = statement.executeQuery();
+
+            while (resultSet.next()) {
+                Empleado e = new Empleado();
+                e.id = resultSet.getInt("id");
+                e.dni = resultSet.getString("dni");
+                e.nombre = resultSet.getString("nombre");
+                e.sexo = resultSet.getString("sexo").charAt(0);
+                e.setCategoria(resultSet.getInt("categoria"));
+                e.anyos = resultSet.getInt("anyos");
+                empleadosMap.put(e.getId(), e);
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return empleadosMap;
+    }
+
     // obtener conexion pool
     private Connection obtenerConexion() throws SQLException {
         return Conexion.getConnection();
     }
-
 }
