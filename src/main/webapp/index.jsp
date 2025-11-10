@@ -18,7 +18,6 @@
             <tr>
                 <td><a href="empleados?opcion=buscarPorCampo">Modificar datos de un empleado</a></td>
             </tr>
-
         </table>
     </body>
 </html>

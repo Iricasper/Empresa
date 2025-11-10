@@ -24,9 +24,8 @@ public class EmpleadoDAO {
 
         String sql = null;
         estadoOperacion = false;
-        connection = obtenerConexion();
 
-        try {
+        try (Connection connection = Conexion.getInstance().getConnection()) {
             sql = "SELECT * FROM empleados";
             statement = connection.prepareStatement(sql);
             resultSet = statement.executeQuery(sql);
@@ -57,7 +56,6 @@ public class EmpleadoDAO {
 
         String sql;
         estadoOperacion = false;
-        connection = obtenerConexion();
 
         if (dniBuscado.equals("")) {
             System.err.println("No se ha introducido ningun valor");
@@ -66,7 +64,7 @@ public class EmpleadoDAO {
             System.err.println("El DNI debe tener 9 caracteres");
             sueldoMap.put("error", "El DNI debe tener 9 caracteres");
         } else {
-            try {
+            try (Connection connection = Conexion.getInstance().getConnection()) {
                 sql = "SELECT empleados.dni, empleados.nombre, nominas.sueldo FROM empleados join nominas ON empleados.dni = nominas.dni WHERE empleados.dni LIKE UPPER(?)";
                 statement = connection.prepareStatement(sql);
                 statement.setString(1, dniBuscado);
@@ -95,9 +93,7 @@ public class EmpleadoDAO {
         String sql;
         Map<Integer, Empleado> empleadosMap = new HashMap<>();
         estadoOperacion = false;
-        connection = obtenerConexion();
-
-        try {
+        try (Connection connection = Conexion.getInstance().getConnection()) {
             sql = "SELECT * FROM empleados WHERE ? LIKE ?";
             statement = connection.prepareStatement(sql);
             statement.setString(1, campo);
@@ -121,8 +117,4 @@ public class EmpleadoDAO {
         return empleadosMap;
     }
 
-    // obtener conexion pool
-    private Connection obtenerConexion() throws SQLException {
-        return Conexion.getConnection();
-    }
 }

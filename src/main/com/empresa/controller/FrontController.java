@@ -15,13 +15,13 @@ import java.util.List;
 import java.util.Map;
 
 @WebServlet(description = "Administra peticiones para la tabla empleados", urlPatterns = {"/empleados"})
-public class EmpleadoController extends HttpServlet {
+public class FrontController extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public EmpleadoController() {
+    public FrontController() {
         super();
         // TODO Auto-generated constructor stub
     }
