@@ -1,6 +1,7 @@
 package com.empresa.builder;
 
 public interface Builder {
+    Object id(int id);
     Object dni(String dni);
     Object nombre(String nombre);
     Object sexo(char sexo);

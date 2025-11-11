@@ -4,11 +4,18 @@ import com.empresa.exceptions.DatosNoCorrectosException;
 import com.empresa.model.Empleado;
 
 public class EmpleadoBuilder implements Builder {
+    private int id;
     private String dni;
     private String nombre;
     private char sexo;
     private int categoria = 1;
     private int anyos = 0;
+
+    @Override
+    public EmpleadoBuilder id(int id) {
+        this.id = id;
+        return this;
+    }
 
     @Override
     public EmpleadoBuilder dni(String dni) {
@@ -45,6 +52,6 @@ public class EmpleadoBuilder implements Builder {
     }
 
     public Empleado build() throws DatosNoCorrectosException {
-        return new Empleado(dni, nombre, sexo, categoria, anyos);
+        return new Empleado(id, dni, nombre, sexo, categoria, anyos);
     }
 }

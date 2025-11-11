@@ -13,7 +13,8 @@ public class Empleado {
     public Empleado() {
     }
 
-    public Empleado(String nombre, String dni, char sexo, int categoria, int anyos) throws DatosNoCorrectosException {
+    public Empleado(int id, String nombre, String dni, char sexo, int categoria, int anyos) throws DatosNoCorrectosException {
+        this.id = id;
         this.nombre = nombre;
         this.dni = dni;
         this.sexo = sexo;

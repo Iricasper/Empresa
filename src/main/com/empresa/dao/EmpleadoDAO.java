@@ -1,6 +1,7 @@
 package com.empresa.dao;
 
 import com.empresa.conexion.Conexion;
+import com.empresa.factory.EmpleadoFactory;
 import com.empresa.model.Empleado;
 
 import java.sql.Connection;
@@ -13,7 +14,6 @@ import java.util.List;
 import java.util.Map;
 
 public class EmpleadoDAO {
-    private Connection connection;
     private PreparedStatement statement;
     private boolean estadoOperacion;
 
@@ -30,14 +30,7 @@ public class EmpleadoDAO {
             statement = connection.prepareStatement(sql);
             resultSet = statement.executeQuery(sql);
             while (resultSet.next()) {
-                Empleado e = new Empleado();
-                e.id = resultSet.getInt("id");
-                e.nombre = resultSet.getString("nombre");
-                e.dni = resultSet.getString("dni");
-                e.sexo = resultSet.getString("sexo").charAt(0);
-                e.setCategoria(resultSet.getInt("categoria"));
-                e.anyos = resultSet.getInt("anyos");
-                listaEmpleados.add(e);
+                listaEmpleados.add(EmpleadoFactory.crearDesdeResultSet(resultSet));
             }
 
         } catch (SQLException ex) {
